@@ -10,6 +10,7 @@
 #import "CalculationModel.h"
 
 @interface ViewController ()
+@property (weak, nonatomic) IBOutlet UITextField *expressionField;
 
 @end
 
@@ -19,14 +20,32 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     CalculationModel *aCalculationModel = new CalculationModel;
-    int number;
-    number = aCalculationModel->ReturnANumber();
-    NSLog(@"%d",number);
+    int Result;
+    Result = aCalculationModel->ReturnANumber();
+    NSLog(@"%d",Result);
     
     const char *expression = "123456";
-    aCalculationModel->CalculateExpression(expression, 7);
+    aCalculationModel->CalculateExpression(expression, 6);
     
 }
+
+- (IBAction)numberPressed:(UIButton *)sender {
+    
+    self.expressionField.text = [NSString stringWithFormat:@"%@%@",self.expressionField.text,sender.titleLabel.text];
+    
+}
+
+- (IBAction)operatorPressed:(UIButton *)sender {
+    
+    
+}
+
+- (IBAction)calculateResult:(id)sender {
+    
+    
+}
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
