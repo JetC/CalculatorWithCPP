@@ -18,6 +18,21 @@ public:
         return 100;
     };
     
+    long CalculateExpression(const char Expression[], int CharactersCountInExpression){
+      
+        long Result = 0;
+        for (int i = 0; i < CharactersCountInExpression; i++) {
+            
+            printf("%c",Expression[i]);
+            
+        }
+        
+        
+        return Result;
+    };
+    
+    
+    
     
 };
 

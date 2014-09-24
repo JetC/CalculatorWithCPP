@@ -23,6 +23,9 @@
     number = aCalculationModel->ReturnANumber();
     NSLog(@"%d",number);
     
+    const char *expression = "123456";
+    aCalculationModel->CalculateExpression(expression, 7);
+    
 }
 
 - (void)didReceiveMemoryWarning {
