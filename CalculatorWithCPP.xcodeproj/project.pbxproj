@@ -15,6 +15,7 @@
 		DF605D4919D259C4005E07C0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF605D4819D259C4005E07C0 /* Images.xcassets */; };
 		DF605D4C19D259C4005E07C0 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF605D4A19D259C4005E07C0 /* LaunchScreen.xib */; };
 		DF605D5819D259C4005E07C0 /* CalculatorWithCPPTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DF605D5719D259C4005E07C0 /* CalculatorWithCPPTests.m */; };
+		DF605D6319D25CA1005E07C0 /* CalculationModel.mm in Sources */ = {isa = PBXBuildFile; fileRef = DF605D6219D25CA1005E07C0 /* CalculationModel.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +43,8 @@
 		DF605D5119D259C4005E07C0 /* CalculatorWithCPPTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CalculatorWithCPPTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF605D5619D259C4005E07C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DF605D5719D259C4005E07C0 /* CalculatorWithCPPTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CalculatorWithCPPTests.m; sourceTree = "<group>"; };
+		DF605D6119D25CA1005E07C0 /* CalculationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalculationModel.h; sourceTree = "<group>"; };
+		DF605D6219D25CA1005E07C0 /* CalculationModel.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CalculationModel.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +90,8 @@
 				DF605D3D19D259C4005E07C0 /* AppDelegate.m */,
 				DF605D4219D259C4005E07C0 /* ViewController.h */,
 				DF605D4319D259C4005E07C0 /* ViewController.mm */,
+				DF605D6119D25CA1005E07C0 /* CalculationModel.h */,
+				DF605D6219D25CA1005E07C0 /* CalculationModel.mm */,
 				DF605D4519D259C4005E07C0 /* Main.storyboard */,
 				DF605D4819D259C4005E07C0 /* Images.xcassets */,
 				DF605D4A19D259C4005E07C0 /* LaunchScreen.xib */,
@@ -226,6 +231,7 @@
 				DF605D3E19D259C4005E07C0 /* AppDelegate.m in Sources */,
 				DF605D4419D259C4005E07C0 /* ViewController.mm in Sources */,
 				DF605D3B19D259C4005E07C0 /* main.m in Sources */,
+				DF605D6319D25CA1005E07C0 /* CalculationModel.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

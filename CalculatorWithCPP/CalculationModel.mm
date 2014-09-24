@@ -1,15 +1,13 @@
 //
-//  ViewController.h
+//  CalculationModel.m
 //  CalculatorWithCPP
 //
 //  Created by 孙培峰 on 9/24/14.
 //  Copyright (c) 2014 孙培峰. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "CalculationModel.h"
 
-@interface ViewController : UIViewController
-
-
-@end
-
+//@implementation CalculationModel
+//
+//@end
