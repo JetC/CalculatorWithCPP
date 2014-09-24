@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+#include <stdio.h>
 //@interface CalculationModel : NSObject
 
 class CalculationModel{
@@ -21,15 +22,37 @@ public:
     long CalculateExpression(const char Expression[], int CharactersCountInExpression){
       
         long Result = 0;
+        //打印输入内容
+        printf("This time inputed into CPP:\n");
         for (int i = 0; i < CharactersCountInExpression; i++) {
             
-            printf("%c",Expression[i]);
-            
+            printf("%d",isNumber(Expression[i]));
         }
+        printf("\n");
+        
+        
         
         
         return Result;
     };
+    
+//    long addingTogether(const char Expression[], int CharactersCountInExpression){
+//        
+//        
+//        
+//    };
+    
+    BOOL isNumber(const char character){
+      
+        if (character <= '9' && character >= '1') {
+            return YES;
+        }
+        else{
+            return NO;
+        }
+    };
+    
+    
     
     
     

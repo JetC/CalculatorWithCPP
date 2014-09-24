@@ -11,6 +11,8 @@
 
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *expressionField;
+@property CalculationModel *aCalculationModel;
+@property (weak, nonatomic) IBOutlet UILabel *resultLabel;
 
 @end
 
@@ -19,33 +21,41 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    CalculationModel *aCalculationModel = new CalculationModel;
-    int Result;
-    Result = aCalculationModel->ReturnANumber();
-    NSLog(@"%d",Result);
-    
-    const char *expression = "123456";
-    aCalculationModel->CalculateExpression(expression, 6);
+    self.aCalculationModel = new CalculationModel;
+//    int Result;
+//    Result = _aCalculationModel->ReturnANumber();
+//    NSLog(@"%d",Result);
+//    
+//    const char *expression = "123456";
+//    _aCalculationModel->CalculateExpression(expression, 6);
     
 }
 
 - (IBAction)numberPressed:(UIButton *)sender {
     
-    self.expressionField.text = [NSString stringWithFormat:@"%@%@",self.expressionField.text,sender.titleLabel.text];
+    [self addPressedContentToTextField:sender.titleLabel.text];
     
 }
 
 - (IBAction)operatorPressed:(UIButton *)sender {
-    
-    
+    [self addPressedContentToTextField:sender.titleLabel.text];
+
 }
 
-- (IBAction)calculateResult:(id)sender {
+- (IBAction)calculateResult:(UIButton *)sender {
     
-    
+    long result = 0;
+    const char *expression = self.expressionField.text.UTF8String;
+    int characterCount = (int)self.expressionField.text.length;
+    result = self.aCalculationModel->CalculateExpression(expression, characterCount);
+    self.resultLabel.text = [NSString stringWithFormat:@"结果为：%ld",result];
 }
 
-
+- (void)addPressedContentToTextField:(NSString *)pressedContent{
+    
+    self.expressionField.text = [NSString stringWithFormat:@"%@%@",self.expressionField.text,pressedContent];
+    
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
