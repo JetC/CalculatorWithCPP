@@ -10,7 +10,7 @@
 		DF605D3B19D259C4005E07C0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DF605D3A19D259C4005E07C0 /* main.m */; };
 		DF605D3E19D259C4005E07C0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DF605D3D19D259C4005E07C0 /* AppDelegate.m */; };
 		DF605D4119D259C4005E07C0 /* CalculatorWithCPP.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DF605D3F19D259C4005E07C0 /* CalculatorWithCPP.xcdatamodeld */; };
-		DF605D4419D259C4005E07C0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF605D4319D259C4005E07C0 /* ViewController.m */; };
+		DF605D4419D259C4005E07C0 /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = DF605D4319D259C4005E07C0 /* ViewController.mm */; };
 		DF605D4719D259C4005E07C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF605D4519D259C4005E07C0 /* Main.storyboard */; };
 		DF605D4919D259C4005E07C0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF605D4819D259C4005E07C0 /* Images.xcassets */; };
 		DF605D4C19D259C4005E07C0 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF605D4A19D259C4005E07C0 /* LaunchScreen.xib */; };
@@ -35,7 +35,7 @@
 		DF605D3D19D259C4005E07C0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		DF605D4019D259C4005E07C0 /* CalculatorWithCPP.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CalculatorWithCPP.xcdatamodel; sourceTree = "<group>"; };
 		DF605D4219D259C4005E07C0 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		DF605D4319D259C4005E07C0 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		DF605D4319D259C4005E07C0 /* ViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ViewController.mm; sourceTree = "<group>"; };
 		DF605D4619D259C4005E07C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DF605D4819D259C4005E07C0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		DF605D4B19D259C4005E07C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -86,7 +86,7 @@
 				DF605D3C19D259C4005E07C0 /* AppDelegate.h */,
 				DF605D3D19D259C4005E07C0 /* AppDelegate.m */,
 				DF605D4219D259C4005E07C0 /* ViewController.h */,
-				DF605D4319D259C4005E07C0 /* ViewController.m */,
+				DF605D4319D259C4005E07C0 /* ViewController.mm */,
 				DF605D4519D259C4005E07C0 /* Main.storyboard */,
 				DF605D4819D259C4005E07C0 /* Images.xcassets */,
 				DF605D4A19D259C4005E07C0 /* LaunchScreen.xib */,
@@ -224,7 +224,7 @@
 			files = (
 				DF605D4119D259C4005E07C0 /* CalculatorWithCPP.xcdatamodeld in Sources */,
 				DF605D3E19D259C4005E07C0 /* AppDelegate.m in Sources */,
-				DF605D4419D259C4005E07C0 /* ViewController.m in Sources */,
+				DF605D4419D259C4005E07C0 /* ViewController.mm in Sources */,
 				DF605D3B19D259C4005E07C0 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

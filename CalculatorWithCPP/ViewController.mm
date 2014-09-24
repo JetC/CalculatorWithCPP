@@ -17,6 +17,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    CalculationModel *aCalculationModel = new CalculationModel;
+    int number;
+    number = aCalculationModel->ReturnANumber();
+    NSLog(@"%d",number);
+    
 }
 
 - (void)didReceiveMemoryWarning {

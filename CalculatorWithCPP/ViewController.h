@@ -10,6 +10,16 @@
 
 @interface ViewController : UIViewController
 
+class CalculationModel{
+  
+public:
+    int ReturnANumber(){
+        
+        return 100;
+    };
+    
+    
+};
 
 @end
 
