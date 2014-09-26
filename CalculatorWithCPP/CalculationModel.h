@@ -59,17 +59,16 @@ public:
                 
                 Numbers[NumbersIndex] = strtol(SingleNumber, NULL, 10);
                 printf("Number:%ld\n",Numbers[NumbersIndex]);
+                NumbersIndex++;
             }
             else{
                 printf("Error");
                 abort();
             }
-            
-            
-            
-            
         }
         printf("\n");
+        
+        ProcessingCalculation(Numbers, NumbersIndex+1, Operators, OperatorsIndex+1);
         
         
         
@@ -77,11 +76,40 @@ public:
         return Result;
     };
     
-//    long addingTogether(const char Expression[], int CharactersCountInExpression){
-//        
-//        
-//        
-//    };
+    long ProcessingCalculation(const long Numbers[], int NumbersCount, const char Operators[], int OperatorsCount){
+        
+        if (NumbersCount != OperatorsCount+1) {
+            //检查
+            printf("Error");
+            abort();
+        }
+        
+        long Result = Numbers[0];
+        int NumbersIndex = 1;
+        int OperatorsIndex = 0;
+        
+        for (int i = 0; i < NumbersCount-2; i++) {
+            
+            switch (Operators[OperatorsIndex]) {
+                    
+                case '+':
+                    Result += Numbers[NumbersIndex];
+                    break;
+                    
+                case '-':
+                    Result -= Numbers[NumbersIndex];
+                    
+                    break;
+                default:
+                    break;
+            }
+            NumbersIndex++;
+            OperatorsIndex++;
+        }
+        
+        printf("Result:%ld",Result);
+        return Result;
+    };
     
     BOOL isNumber(const char character){
       
