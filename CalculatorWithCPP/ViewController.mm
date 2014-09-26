@@ -48,6 +48,11 @@
     const char *expression = self.expressionField.text.UTF8String;
     int characterCount = (int)self.expressionField.text.length;
     result = self.aCalculationModel->CalculateExpression(expression, characterCount);
+
+    if (result == LONG_MAX) {
+        self.resultLabel.text = @"输入有误";
+        return;
+    }
     self.resultLabel.text = [NSString stringWithFormat:@"结果为：%ld",result];
 }
 

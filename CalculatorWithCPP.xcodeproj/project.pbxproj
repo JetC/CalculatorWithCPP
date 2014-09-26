@@ -16,6 +16,7 @@
 		DF605D4C19D259C4005E07C0 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF605D4A19D259C4005E07C0 /* LaunchScreen.xib */; };
 		DF605D5819D259C4005E07C0 /* CalculatorWithCPPTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DF605D5719D259C4005E07C0 /* CalculatorWithCPPTests.m */; };
 		DF605D6319D25CA1005E07C0 /* CalculationModel.mm in Sources */ = {isa = PBXBuildFile; fileRef = DF605D6219D25CA1005E07C0 /* CalculationModel.mm */; };
+		DF69AD5D19D59E390014D86C /* CalculationModelTests.mm in Sources */ = {isa = PBXBuildFile; fileRef = DF69AD5C19D59E390014D86C /* CalculationModelTests.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +46,7 @@
 		DF605D5719D259C4005E07C0 /* CalculatorWithCPPTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CalculatorWithCPPTests.m; sourceTree = "<group>"; };
 		DF605D6119D25CA1005E07C0 /* CalculationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalculationModel.h; sourceTree = "<group>"; };
 		DF605D6219D25CA1005E07C0 /* CalculationModel.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CalculationModel.mm; sourceTree = "<group>"; };
+		DF69AD5C19D59E390014D86C /* CalculationModelTests.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CalculationModelTests.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				DF605D5719D259C4005E07C0 /* CalculatorWithCPPTests.m */,
+				DF69AD5C19D59E390014D86C /* CalculationModelTests.mm */,
 				DF605D5519D259C4005E07C0 /* Supporting Files */,
 			);
 			path = CalculatorWithCPPTests;
@@ -240,6 +243,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DF605D5819D259C4005E07C0 /* CalculatorWithCPPTests.m in Sources */,
+				DF69AD5D19D59E390014D86C /* CalculationModelTests.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -424,6 +428,7 @@
 				DF605D5D19D259C4005E07C0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DF605D5E19D259C4005E07C0 /* Build configuration list for PBXNativeTarget "CalculatorWithCPPTests" */ = {
 			isa = XCConfigurationList;
@@ -432,6 +437,7 @@
 				DF605D6019D259C4005E07C0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
