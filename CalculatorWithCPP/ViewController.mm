@@ -44,7 +44,7 @@
 
 - (IBAction)calculateResult:(UIButton *)sender {
     
-    long result = 0;
+    float result = 0;
     const char *expression = self.expressionField.text.UTF8String;
     int characterCount = (int)self.expressionField.text.length;
     result = self.aCalculationModel->CalculateExpression(expression, characterCount);
@@ -53,7 +53,7 @@
         self.resultLabel.text = @"输入有误";
         return;
     }
-    self.resultLabel.text = [NSString stringWithFormat:@"结果为：%ld",result];
+    self.resultLabel.text = [NSString stringWithFormat:@"结果为：%g",result];
 }
 
 - (void)addPressedContentToTextField:(NSString *)pressedContent{

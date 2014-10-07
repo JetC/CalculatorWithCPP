@@ -322,9 +322,9 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="SBl-nb-rtZ"/>
                                 <exclude reference="EfF-6A-0td"/>
                                 <exclude reference="Y2W-Z0-3Wo"/>
+                                <exclude reference="SBl-nb-rtZ"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">

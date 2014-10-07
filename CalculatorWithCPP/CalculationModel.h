@@ -21,11 +21,11 @@ class CalculationModel{
     
 public:
     
-    long CalculateExpression(const char Expression[], int CharactersCountInExpression);
+    float CalculateExpression(const char Expression[], int CharactersCountInExpression);
     
 private:
     
-    long ProcessingCalculation(long Numbers[], int NumbersCount, char Operators[], int OperatorsCount);
+    float ProcessingCalculation(long Numbers[], int NumbersCount, char Operators[], int OperatorsCount);
     BOOL isNumber(const char character);
     BOOL isOperator(const char character);
     BOOL isMultiplyOrDivisionSign(const char character);

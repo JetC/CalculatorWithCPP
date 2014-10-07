@@ -8,9 +8,9 @@
 
 #include "CalculationModel.h"
 
-long CalculationModel::CalculateExpression(const char Expression[], int CharactersCountInExpression)
+float CalculationModel::CalculateExpression(const char Expression[], int CharactersCountInExpression)
 {
-    long Result = 0;
+    float Result = 0;
     //打印输入内容
     printf("This time inputed into CPP:\n");
     long Numbers[100];
@@ -83,7 +83,7 @@ long CalculationModel::CalculateExpression(const char Expression[], int Characte
     return Result;
 }
 
-long CalculationModel::ProcessingCalculation(long Numbers[], int NumbersCount,
+float CalculationModel::ProcessingCalculation(long Numbers[], int NumbersCount,
                                             char Operators[], int OperatorsCount)
 {
     if (NumbersCount != OperatorsCount+1) {
@@ -100,8 +100,8 @@ long CalculationModel::ProcessingCalculation(long Numbers[], int NumbersCount,
         }
     }
 
-    long FinalResult = 0;
-    long tempResult = 0;
+    float FinalResult = 0;
+    float tempResult = 0;
     int NumbersIndex = 0;
     int OperatorsIndex = 0;
 
@@ -112,9 +112,10 @@ long CalculationModel::ProcessingCalculation(long Numbers[], int NumbersCount,
                 case '*':
                     tempResult += Numbers[NumbersIndex] * Numbers[NumbersIndex+1];
                     break;
-                    
+//FIXME:连乘连除不完善
                 case '/':
-                    tempResult += Numbers[NumbersIndex] / Numbers[NumbersIndex+1];
+                    printf("Numbers[NumbersIndex] AND +1:  %ld,%ld\n\n",Numbers[NumbersIndex],Numbers[NumbersIndex+1]);
+                    tempResult += (float)Numbers[NumbersIndex] / (float)Numbers[NumbersIndex+1];
                     break;
                 default:
                     break;
@@ -125,35 +126,40 @@ long CalculationModel::ProcessingCalculation(long Numbers[], int NumbersCount,
         }
         NumbersIndex++;
         OperatorsIndex++;
-        printf("tempResult: %ld",tempResult);
+        printf("tempResult: %f",tempResult);
     }
     FinalResult += tempResult;
-    NumbersIndex = 0;
+    FinalResult += Numbers[0];
+    NumbersIndex = 1;
     OperatorsIndex = 0;
     
     for (int j = 0; j < NumbersCount-1; j++) {
 
         switch (Operators[OperatorsIndex]) {
             case '+':
-                FinalResult += Numbers[NumbersIndex];
+                printf("Now adding: %ld",Numbers[NumbersIndex]);
+                FinalResult += (float)Numbers[NumbersIndex];
                 break;
             case '-':
-                FinalResult -= Numbers[NumbersIndex];
+                printf("Now Minusing: %ld",Numbers[NumbersIndex]);
+                FinalResult -= (float)Numbers[NumbersIndex];
                 break;
             default:
+                printf("Operator:%c",Operators[OperatorsIndex]);
                 break;
         }
+        printf("Numbers[NumbersIndex] AND +1:  %ld,%ld\n\n",Numbers[NumbersIndex],Numbers[NumbersIndex+1]);
         NumbersIndex++;
         OperatorsIndex++;
     }
 
-    printf("Result:%ld\n",FinalResult);
+    printf("Result:%f\n",FinalResult);
     return FinalResult;
 }
 
 BOOL CalculationModel::isNumber(const char character){
 
-    if (character <= '9' && character >= '1') {
+    if (character <= '9' && character >= '0') {
         return YES;
     }
     else{
