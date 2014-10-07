@@ -90,11 +90,11 @@
 			children = (
 				DF605D3C19D259C4005E07C0 /* AppDelegate.h */,
 				DF605D3D19D259C4005E07C0 /* AppDelegate.m */,
+				DF605D4519D259C4005E07C0 /* Main.storyboard */,
 				DF605D4219D259C4005E07C0 /* ViewController.h */,
 				DF605D4319D259C4005E07C0 /* ViewController.mm */,
 				DF605D6119D25CA1005E07C0 /* CalculationModel.h */,
 				DF605D6219D25CA1005E07C0 /* CalculationModel.mm */,
-				DF605D4519D259C4005E07C0 /* Main.storyboard */,
 				DF605D4819D259C4005E07C0 /* Images.xcassets */,
 				DF605D4A19D259C4005E07C0 /* LaunchScreen.xib */,
 				DF605D3F19D259C4005E07C0 /* CalculatorWithCPP.xcdatamodeld */,

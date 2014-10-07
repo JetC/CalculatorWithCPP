@@ -25,9 +25,10 @@ public:
     
 private:
     
-    long ProcessingCalculation(const long Numbers[], int NumbersCount, const char Operators[], int OperatorsCount);
+    long ProcessingCalculation(long Numbers[], int NumbersCount, char Operators[], int OperatorsCount);
     BOOL isNumber(const char character);
-    BOOL isExpression(const char character);
+    BOOL isOperator(const char character);
+    BOOL isMultiplyOrDivisionSign(const char character);
     char makeSingleToNumber(const char character[], int characterCount);
     
     

@@ -30,7 +30,7 @@ long CalculationModel::CalculateExpression(const char Expression[], int Characte
             SingleNumberIndex++;
         }
         //把运算符加入Operators
-        else if (isExpression(Expression[i]) &&
+        else if (isOperator(Expression[i]) &&
                  i > 0 &&
                  i != CharactersCountInExpression-1 ){
 
@@ -83,8 +83,8 @@ long CalculationModel::CalculateExpression(const char Expression[], int Characte
     return Result;
 }
 
-long CalculationModel::ProcessingCalculation(const long Numbers[], int NumbersCount,
-                                             const char Operators[], int OperatorsCount)
+long CalculationModel::ProcessingCalculation(long Numbers[], int NumbersCount,
+                                            char Operators[], int OperatorsCount)
 {
     if (NumbersCount != OperatorsCount+1) {
         //检查
@@ -100,21 +100,45 @@ long CalculationModel::ProcessingCalculation(const long Numbers[], int NumbersCo
         }
     }
 
-    long Result = Numbers[0];
-    int NumbersIndex = 1;
+    long FinalResult = 0;
+    long tempResult = 0;
+    int NumbersIndex = 0;
     int OperatorsIndex = 0;
 
-    for (int i = 0; i < NumbersCount-2; i++) {
+    for (int i = 0; i < NumbersCount-1; i++) {
+        if (isMultiplyOrDivisionSign(Operators[OperatorsIndex])) {
+            
+            switch (Operators[OperatorsIndex]) {
+                case '*':
+                    tempResult += Numbers[NumbersIndex] * Numbers[NumbersIndex+1];
+                    break;
+                    
+                case '/':
+                    tempResult += Numbers[NumbersIndex] / Numbers[NumbersIndex+1];
+                    break;
+                default:
+                    break;
+            }
+            Numbers[NumbersIndex] = 0;
+            Numbers[NumbersIndex+1] = 0;
+            Operators[OperatorsIndex] = '+';
+        }
+        NumbersIndex++;
+        OperatorsIndex++;
+        printf("tempResult: %ld",tempResult);
+    }
+    FinalResult += tempResult;
+    NumbersIndex = 0;
+    OperatorsIndex = 0;
+    
+    for (int j = 0; j < NumbersCount-1; j++) {
 
         switch (Operators[OperatorsIndex]) {
-
             case '+':
-                Result += Numbers[NumbersIndex];
+                FinalResult += Numbers[NumbersIndex];
                 break;
-
             case '-':
-                Result -= Numbers[NumbersIndex];
-
+                FinalResult -= Numbers[NumbersIndex];
                 break;
             default:
                 break;
@@ -123,8 +147,8 @@ long CalculationModel::ProcessingCalculation(const long Numbers[], int NumbersCo
         OperatorsIndex++;
     }
 
-    printf("Result:%ld",Result);
-    return Result;
+    printf("Result:%ld\n",FinalResult);
+    return FinalResult;
 }
 
 BOOL CalculationModel::isNumber(const char character){
@@ -137,7 +161,7 @@ BOOL CalculationModel::isNumber(const char character){
     }
 };
 
-BOOL CalculationModel::isExpression(const char character){
+BOOL CalculationModel::isOperator(const char character){
 
     if (character == '+' || character == '-' || character == '*' || character == '/') {
         return YES;
@@ -146,6 +170,15 @@ BOOL CalculationModel::isExpression(const char character){
         return NO;
     }
 };
+
+BOOL CalculationModel::isMultiplyOrDivisionSign(const char character){
+    if (character == '*' || character == '/') {
+        return YES;
+    }
+    else{
+        return NO;
+    }
+}
 
 char CalculationModel::makeSingleToNumber(const char character[], int characterCount){
 

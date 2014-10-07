@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
+#include "CalculationModel.h"
 
 @interface CalculationModelTests : XCTestCase
 
@@ -27,7 +28,19 @@
 
 - (void)testExample {
     // This is an example of a functional test case.
-    
+
+    char *TestCases[40];
+    for (int i = 0; i<30 ; i++) {
+        char SingleCase[30] = "1+2+1-2+11-2223+212+21+32134";
+        char cutOver[30];
+        strlcpy(&cutOver[30] , &SingleCase[30], sizeof(cutOver[30]));
+        printf("TestCases[i]: %c\n",TestCases[i]);
+    }
+
+    CalculationModel *aCalculationModel = new CalculationModel();
+
+
+//    aCalculationModel->CalculateExpression( , );
 
 
 
@@ -35,6 +48,7 @@
 
 
 }
+
 
 - (void)testPerformanceExample {
     // This is an example of a performance test case.
