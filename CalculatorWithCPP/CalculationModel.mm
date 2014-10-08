@@ -113,9 +113,16 @@ float CalculationModel::ProcessingCalculation(long Numbers[], int NumbersCount,
      *  优先处理乘除法
      */
     BOOL isLastOperatorMultiplyOrDivision = NO;
+    BOOL isAddingBeforeMultiplyOrDivision =  YES;
     for (int i = 0; i < NumbersCount-1; i++) {
         if (isMultiplyOrDivisionSign(Operators[OperatorsIndex])) {
             
+            if (OperatorsIndex-1 >= 0 && !(isAddingOperator(Operators[OperatorsIndex-1]))) {
+                isAddingBeforeMultiplyOrDivision = NO;
+            }
+            else{
+                isAddingBeforeMultiplyOrDivision = YES;
+            }
             isLastOperatorMultiplyOrDivision = YES;
             switch (Operators[OperatorsIndex]) {
                 case '*':
@@ -129,7 +136,6 @@ float CalculationModel::ProcessingCalculation(long Numbers[], int NumbersCount,
                         Numbers[NumbersIndex+1] = 0;
                     }
                     break;
-                    //FIXME:连乘连除不完善
                 case '/':
                     if (tempResult) {
                         tempResult /= Numbers[NumbersIndex+1];
@@ -157,7 +163,13 @@ float CalculationModel::ProcessingCalculation(long Numbers[], int NumbersCount,
         OperatorsIndex++;
     }
     printf("multiplyAndDivisionResult: %f",multiplyAndDivisionResult);
-    FinalResult += multiplyAndDivisionResult;
+//FIXME:要考虑连乘前面是减号的情况
+    if (isAddingBeforeMultiplyOrDivision) {
+        FinalResult += multiplyAndDivisionResult;
+    }
+    else{
+        FinalResult -= multiplyAndDivisionResult;
+    }
     FinalResult += Numbers[0];
     NumbersIndex = 1;
     OperatorsIndex = 0;
@@ -211,6 +223,16 @@ BOOL CalculationModel::isOperator(const char character){
 
 BOOL CalculationModel::isMultiplyOrDivisionSign(const char character){
     if (character == '*' || character == '/') {
+        return YES;
+    }
+    else{
+        return NO;
+    }
+}
+
+
+BOOL CalculationModel::isAddingOperator(const char character){
+    if (character == '+' ) {
         return YES;
     }
     else{

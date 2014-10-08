@@ -30,7 +30,8 @@ private:
     BOOL isOperator(const char character);
     BOOL isMultiplyOrDivisionSign(const char character);
     char makeSingleToNumber(const char character[], int characterCount);
-    
+    BOOL isAddingOperator(const char character);
+
     
     
     
