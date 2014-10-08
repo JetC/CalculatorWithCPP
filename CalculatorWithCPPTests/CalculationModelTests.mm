@@ -28,16 +28,18 @@
 
 - (void)testExample {
     // This is an example of a functional test case.
-
+    NSString *filePath = [[NSBundle bundleForClass:[self class]]pathForResource:@"TestExpressions" ofType:@"plist"];
+    NSDictionary *testExpressions = [NSDictionary dictionaryWithContentsOfFile:filePath];
+    [testExpressions count];
     char *TestCases[40];
     for (int i = 0; i<30 ; i++) {
         char SingleCase[30] = "1+2+1-2+11-2223+212+21+32134";
         char cutOver[30];
         strlcpy(&cutOver[30] , &SingleCase[30], sizeof(cutOver[30]));
-        printf("TestCases[i]: %c\n",TestCases[i]);
+        printf("TestCases[i]: %s\n",TestCases[i]);
     }
 
-    CalculationModel *aCalculationModel = new CalculationModel();
+//    CalculationModel *aCalculationModel = new CalculationModel();
 
 
 //    aCalculationModel->CalculateExpression( , );
