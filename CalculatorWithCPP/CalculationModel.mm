@@ -19,13 +19,13 @@ float CalculationModel::CalculateExpression(const char Expression[], int Charact
     int SingleNumberIndex = 0;
     int NumbersIndex = 0;
     int OperatorsIndex = 0;
-
+    
     for (int i = 0; i < CharactersCountInExpression; i++) {
-
+        
         //将单个字符加入SingleNumber (没到达最后一个字符时)
         if (isNumber(Expression[i]) &&
             i != CharactersCountInExpression-1) {
-
+            
             SingleNumber[SingleNumberIndex] = Expression[i];
             SingleNumberIndex++;
         }
@@ -33,26 +33,26 @@ float CalculationModel::CalculateExpression(const char Expression[], int Charact
         else if (isOperator(Expression[i]) &&
                  i > 0 &&
                  i != CharactersCountInExpression-1 ){
-
+            
             //SingleNumber转为long的数字
             Numbers[NumbersIndex] = strtol(SingleNumber, NULL, 10);
             printf("Number:%ld\n",Numbers[NumbersIndex]);
             NumbersIndex++;
-
+            
             //复位SingleNumber
             memset(SingleNumber, 0,strlen(SingleNumber));
             SingleNumberIndex = 0;
-
+            
             Operators[OperatorsIndex] = Expression[i];
             OperatorsIndex++;
         }
         //当到达最后一个字符且其是数字时
         else if (i == CharactersCountInExpression-1 &&
                  isNumber(Expression[i])){
-
+            
             SingleNumber[SingleNumberIndex] = Expression[i];
             SingleNumberIndex++;
-
+            
             Numbers[NumbersIndex] = strtol(SingleNumber, NULL, 10);
             printf("Number:%ld\n",Numbers[NumbersIndex]);
             NumbersIndex++;
@@ -76,15 +76,15 @@ float CalculationModel::CalculateExpression(const char Expression[], int Charact
         //逐个读取字符
     }
     printf("\n");
-
+    
     Result = ProcessingCalculation(Numbers, NumbersIndex+1,
                                    Operators, OperatorsIndex+1);
-
+    
     return Result;
 }
 
 float CalculationModel::ProcessingCalculation(long Numbers[], int NumbersCount,
-                                            char Operators[], int OperatorsCount)
+                                              char Operators[], int OperatorsCount)
 {
     if (NumbersCount != OperatorsCount+1) {
         //检查
@@ -99,42 +99,74 @@ float CalculationModel::ProcessingCalculation(long Numbers[], int NumbersCount,
             return InputErrorUnknown;
         }
     }
-
+    
     float FinalResult = 0;
+    float multiplyAndDivisionResult = 0;
+    /**
+     *  每串连在一起的乘除运算结果
+     */
     float tempResult = 0;
     int NumbersIndex = 0;
     int OperatorsIndex = 0;
-
+    
+    /**
+     *  优先处理乘除法
+     */
+    BOOL isLastOperatorMultiplyOrDivision = NO;
     for (int i = 0; i < NumbersCount-1; i++) {
         if (isMultiplyOrDivisionSign(Operators[OperatorsIndex])) {
             
+            isLastOperatorMultiplyOrDivision = YES;
             switch (Operators[OperatorsIndex]) {
                 case '*':
-                    tempResult += Numbers[NumbersIndex] * Numbers[NumbersIndex+1];
+                    if (tempResult) {
+                        tempResult *= Numbers[NumbersIndex+1];
+                        Numbers[NumbersIndex+1] = 0;
+                    }
+                    else{
+                        tempResult += Numbers[NumbersIndex] * Numbers[NumbersIndex+1];
+                        Numbers[NumbersIndex] = 0;
+                        Numbers[NumbersIndex+1] = 0;
+                    }
                     break;
-//FIXME:连乘连除不完善
+                    //FIXME:连乘连除不完善
                 case '/':
-                    printf("Numbers[NumbersIndex] AND +1:  %ld,%ld\n\n",Numbers[NumbersIndex],Numbers[NumbersIndex+1]);
-                    tempResult += (float)Numbers[NumbersIndex] / (float)Numbers[NumbersIndex+1];
+                    if (tempResult) {
+                        tempResult /= Numbers[NumbersIndex+1];
+                        Numbers[NumbersIndex+1] = 0;
+                    }
+                    else{
+                        tempResult += Numbers[NumbersIndex] / Numbers[NumbersIndex+1];
+                        Numbers[NumbersIndex] = 0;
+                        Numbers[NumbersIndex+1] = 0;
+                    }
                     break;
                 default:
                     break;
             }
+            //处理乘除后将已完成乘除的数字归零，之后所有的计算只处理加减即可
             Numbers[NumbersIndex] = 0;
-            Numbers[NumbersIndex+1] = 0;
             Operators[OperatorsIndex] = '+';
+        }
+        else{
+            isLastOperatorMultiplyOrDivision = NO;
+            multiplyAndDivisionResult += tempResult;
+            tempResult = 0;
         }
         NumbersIndex++;
         OperatorsIndex++;
-        printf("tempResult: %f",tempResult);
     }
-    FinalResult += tempResult;
+    printf("multiplyAndDivisionResult: %f",multiplyAndDivisionResult);
+    FinalResult += multiplyAndDivisionResult;
     FinalResult += Numbers[0];
     NumbersIndex = 1;
     OperatorsIndex = 0;
     
+    /**
+     *  处理加减
+     */
     for (int j = 0; j < NumbersCount-1; j++) {
-
+        
         switch (Operators[OperatorsIndex]) {
             case '+':
                 printf("Now adding: %ld",Numbers[NumbersIndex]);
@@ -152,13 +184,13 @@ float CalculationModel::ProcessingCalculation(long Numbers[], int NumbersCount,
         NumbersIndex++;
         OperatorsIndex++;
     }
-
+    
     printf("Result:%f\n",FinalResult);
     return FinalResult;
 }
 
 BOOL CalculationModel::isNumber(const char character){
-
+    
     if (character <= '9' && character >= '0') {
         return YES;
     }
@@ -168,7 +200,7 @@ BOOL CalculationModel::isNumber(const char character){
 };
 
 BOOL CalculationModel::isOperator(const char character){
-
+    
     if (character == '+' || character == '-' || character == '*' || character == '/') {
         return YES;
     }
@@ -187,7 +219,7 @@ BOOL CalculationModel::isMultiplyOrDivisionSign(const char character){
 }
 
 char CalculationModel::makeSingleToNumber(const char character[], int characterCount){
-
+    
     char Number[100];
     if (characterCount >= 100) {
         printf("Error");
