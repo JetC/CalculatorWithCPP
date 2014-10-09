@@ -11,10 +11,12 @@
 
 enum InputError {
     
-    InputErrorAbnormalChar,
-    InputErrorLackOfOperator,
-    InputErrorTooManyOperator,
-    InputErrorUnknown
+    InputErrorAbnormalChar = 0,
+    InputErrorLackOfOperator = 1,
+    InputErrorTooManyOperator = 2,
+    InputErrorNoInput = 3,
+    InputErrorCountBelowZero = 4,
+    InputErrorUnknown = 5
 };
 
 class CalculationModel{

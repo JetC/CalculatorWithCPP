@@ -86,17 +86,48 @@ float CalculationModel::CalculateExpression(const char Expression[], int Charact
 float CalculationModel::ProcessingCalculation(long Numbers[], int NumbersCount,
                                               char Operators[], int OperatorsCount)
 {
-    if (NumbersCount != OperatorsCount+1) {
-        //检查
-        printf("Error\n");
-        if (NumbersCount > OperatorsCount+1) {
-            return InputErrorLackOfOperator;
+    try {
+        if (NumbersCount != OperatorsCount+1 && NumbersCount > 0 && OperatorsCount >0) {
+            //检查
+            if (NumbersCount > OperatorsCount+1) {
+                printf("Error, throw InputErrorLackOfOperator\n");
+                throw InputErrorLackOfOperator;
+            }
+            else if (NumbersCount < OperatorsCount+1){
+                printf("Error, throw InputErrorTooManyOperator\n");
+                throw InputErrorTooManyOperator;
+            }
+            else{
+                printf("Error, throw InputErrorUnknown\n");
+                throw InputErrorUnknown;
+            }
         }
-        else if (NumbersCount < OperatorsCount+1){
-            return InputErrorTooManyOperator;
+        else if(NumbersCount == 0 && OperatorsCount == 0){
+            throw InputErrorNoInput;
         }
-        else{
-            return InputErrorUnknown;
+        else if (NumbersCount < 0 || OperatorsCount < 0){
+            throw InputErrorCountBelowZero;
+        }
+    } catch (InputError& Error) {
+        switch (Error) {
+            case InputErrorLackOfOperator:
+                printf("Error, throw InputErrorLackOfOperator\n");
+                break;
+            case InputErrorTooManyOperator:
+                printf("Error, throw InputErrorTooManyOperator\n");
+                break;
+            case InputErrorUnknown:
+                printf("Error, throw InputErrorUnknown\n");
+                break;
+            case InputErrorNoInput:
+                printf("Error, throw InputErrorNoInput\n");
+                break;
+            case InputErrorCountBelowZero:
+                printf("Error, throw InputErrorCountBelowZero\n");
+                break;
+            default:
+                printf("Uncaught ERROR");
+                break;
         }
     }
     
@@ -116,6 +147,7 @@ float CalculationModel::ProcessingCalculation(long Numbers[], int NumbersCount,
      */
     BOOL isAddingBeforeMultiplyOrDivision =  YES;
     for (int i = 0; i < NumbersCount-1; i++) {
+        printf("Numbers[NumbersIndex] : %ld",Numbers[NumbersIndex]);
         if (isMultiplyOrDivisionSign(Operators[OperatorsIndex])) {
         //遇到了乘除号在Operators[OperatorsIndex]
             if (tempResult == 0 && OperatorsIndex-1 >= 0 && !(isAddingOperator(Operators[OperatorsIndex-1]))) {
@@ -162,7 +194,7 @@ float CalculationModel::ProcessingCalculation(long Numbers[], int NumbersCount,
             Operators[OperatorsIndex] = '+';
         }
         else{
-        //没有遇到乘除号在Operators[OperatorsIndex]处
+//没有遇到乘除号在Operators[OperatorsIndex]处
 //FIXME:连乘的算完后还会再算一次
             if (isAddingBeforeMultiplyOrDivision && tempResult != 0) {
                 multiplyAndDivisionResult += tempResult;
@@ -176,13 +208,9 @@ float CalculationModel::ProcessingCalculation(long Numbers[], int NumbersCount,
         OperatorsIndex++;
     }
     printf("multiplyAndDivisionResult: %f",multiplyAndDivisionResult);
-//FIXME:要考虑连乘前面是减号的情况
-//    if (isAddingBeforeMultiplyOrDivision) {
-        FinalResult += multiplyAndDivisionResult;
-//    }
-//    else{
-//        FinalResult -= multiplyAndDivisionResult;
-//    }
+
+    FinalResult += multiplyAndDivisionResult;
+
     FinalResult += Numbers[0];
     NumbersIndex = 1;
     OperatorsIndex = 0;
