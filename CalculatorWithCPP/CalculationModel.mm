@@ -109,21 +109,28 @@ float CalculationModel::ProcessingCalculation(long Numbers[], int NumbersCount,
     int NumbersIndex = 0;
     int OperatorsIndex = 0;
     
+    //优先处理乘除法
+
     /**
-     *  优先处理乘除法
+     *  确定乘除序列前的符号是正还是负
      */
-    BOOL isLastOperatorMultiplyOrDivision = NO;
     BOOL isAddingBeforeMultiplyOrDivision =  YES;
     for (int i = 0; i < NumbersCount-1; i++) {
         if (isMultiplyOrDivisionSign(Operators[OperatorsIndex])) {
-            
-            if (OperatorsIndex-1 >= 0 && !(isAddingOperator(Operators[OperatorsIndex-1]))) {
+        //遇到了乘除号在Operators[OperatorsIndex]
+            if (tempResult == 0 && OperatorsIndex-1 >= 0 && !(isAddingOperator(Operators[OperatorsIndex-1]))) {
+                /**
+                 *  乘除号不是第一个Operator且在一系列乘除号之前的是减号
+                 */
                 isAddingBeforeMultiplyOrDivision = NO;
             }
-            else{
+            else if(tempResult == 0 && OperatorsIndex-1 >= 0 && isAddingOperator(Operators[OperatorsIndex-1])){
+                /**
+                 *  乘除号不是第一个Operator且乘除前面是加号
+                 */
                 isAddingBeforeMultiplyOrDivision = YES;
             }
-            isLastOperatorMultiplyOrDivision = YES;
+            
             switch (Operators[OperatorsIndex]) {
                 case '*':
                     if (tempResult) {
@@ -155,8 +162,14 @@ float CalculationModel::ProcessingCalculation(long Numbers[], int NumbersCount,
             Operators[OperatorsIndex] = '+';
         }
         else{
-            isLastOperatorMultiplyOrDivision = NO;
-            multiplyAndDivisionResult += tempResult;
+        //没有遇到乘除号在Operators[OperatorsIndex]处
+//FIXME:连乘的算完后还会再算一次
+            if (isAddingBeforeMultiplyOrDivision && tempResult != 0) {
+                multiplyAndDivisionResult += tempResult;
+            }
+            else if(!isAddingBeforeMultiplyOrDivision && tempResult != 0){
+                multiplyAndDivisionResult -= tempResult;
+            }
             tempResult = 0;
         }
         NumbersIndex++;
@@ -164,12 +177,12 @@ float CalculationModel::ProcessingCalculation(long Numbers[], int NumbersCount,
     }
     printf("multiplyAndDivisionResult: %f",multiplyAndDivisionResult);
 //FIXME:要考虑连乘前面是减号的情况
-    if (isAddingBeforeMultiplyOrDivision) {
+//    if (isAddingBeforeMultiplyOrDivision) {
         FinalResult += multiplyAndDivisionResult;
-    }
-    else{
-        FinalResult -= multiplyAndDivisionResult;
-    }
+//    }
+//    else{
+//        FinalResult -= multiplyAndDivisionResult;
+//    }
     FinalResult += Numbers[0];
     NumbersIndex = 1;
     OperatorsIndex = 0;
